@@ -1,34 +1,36 @@
-# Readmegenerator
+##ReadmeGenerator
 
 ![badge](https://img.shields.io/badge/license-MIT-blue)
 
-License
+ons
 
+#Contributions
 
+It is open source
 
-Contributions
+#Questions
 
-lhdhdl
+Contact the developer for any questions
 
-Questions
+#Usage
 
-ldhdh
+Useful for all GitHub submission
 
-Table of Content
+#Description
 
-dlhdhld
+This is an app to Generate a readme
 
-Installation
+#License
 
-dlhdhld
+MIT
 
-Usage
+#Installation
 
-lhdhld
+npm i
 
-## GitHub Email: null
+GitHub Email: null
 
-## GitHub Avatar
+GitHub Avatar
 
 ![ Dorinetk](https://avatars3.githubusercontent.com/u/58992132?v=4&s=48)
 
