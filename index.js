@@ -72,7 +72,7 @@ function writeToFile(fileName, data) {
 
     inquirer.prompt(questions).
     then(function(data){
-          generateMarkdown;
+          generateMarkdown(data);
        
          init();
 
@@ -92,15 +92,15 @@ function init(){
         console.log(answer.username);
         // const queryUrl = "https://api.github.com/users/" + answer.username";
         // console.log(queryUrL);
-
+        //const userName = answer.username;
         //api.
         axios
-        .get("https://api.github.com/users/Dorinetk")
+        .get("https://api.github.com/users/Dorinetk") //.get("https://api.github.com/users/", {params:{userName}})
         .then(function (res) {
 
-                console.log(res); 
+                //console.log(res); 
 
-                fs.appendFile("readmegenerator.md", "## GitHub Avatar" + "\n" + "\n" + "![ " + answer.username + "](" + res.data.avatar_url + ")" + "\n" + "\n", function (err) {
+                fs.appendFile("readmegenerator.md", "## GitHub Avatar" + "\n" + "\n" + "![ " + answer.username + "](" + res.data.avatar_url + "&s=48"+ ")" + "\n" + "\n", function (err) {
                     if (err) {
                         return console.log(err);
                     }
