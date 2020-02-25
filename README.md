@@ -1,6 +1,6 @@
 #ReadMegenerator
 
-This application generates a good readme, ReadmeGenertor.md,  based on user's input data. It calls GitHub's API to collect the profile picture and the email, if available of the developer.
+This application generates a good readme, ReadmeGenerator.md,  based on user's input data. It calls GitHub's API to collect the profile picture and the email, if available of the developer.
 
 Repository: https://github.com/Dorinetk/readmegenerator/
 
