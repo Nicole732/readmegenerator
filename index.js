@@ -1,5 +1,8 @@
 var inquirer = require("inquirer");
-var fs = require("fs");
+const axios = require("axios").default;
+var fs = require("fs"); 
+var  generateMarkdown = require("./utils/generateMarkdown.js");
+const api = require("./utils/api.js");
 
 //The question about license should allow the user to pick a license 
 //from a list of choices. The 2 questions about "What command should be run..." 
@@ -8,17 +11,7 @@ var fs = require("fs");
 const questions = [
     {
         type: "input",
-        name: "githubusername",
-        message: "What is your GitHub username?"
-    },
-    {
-        type: "input",
-        name: "email",
-        message: "What is your email address?"
-    },
-    {
-        type: "input",
-        name: "projectname",
+        name: "title",
         message: "What is your project name?"
     },
     {
@@ -27,67 +20,106 @@ const questions = [
         message: "Please write a short description of your prpject:"
     },
     {
+        type: "input",
+        name: "table",
+        message: "Table of content:"
+    },
+    {
+        type: "input",
+        name: "installation",
+        message: "What command should be run to install your application?",
+        default: "npm i"
+    },
+    {
+        type: "input",
+        name: "usage",
+        message: "What is the usage of your application?"
+    },
+
+    {
         type: "checkbox",
-        name: "license",
+        name: "licensing",
         message: "What kind of license should your project have?",
         choices: [
             "MIT", 
             "CGNU AGPLv3", 
+            "Apache License 2.0.",
+            "Mozilla Public License 2.0"
         ]
     },
     {
-        type: "list",
-        name: "runcommand",
-        message: "What command should be run to install dependencies?",
-        choices: [
-            "npm i",
-            "other"
-        ]
-     },
-     {
-        type: "list",
+        type: "input",
+        name: "contributing",
+        message: "What does the use need to know about contributing to the repo?"
+    },
+    
+    {
+        type: "input",
         name: "testcommand",
         message: "What command should be run to run tests?",
-        choices: [
-            "npm test",
-            "other"
-        ]
-            
+        default: "npm test",
     },
     {
         type: "input",
-        name: "repo",
-        message: "What does the user need to know about using the repo?"
-    },
-    {
-        type: "input",
-        name: "contributions",
-        message: "What does the use need to know about contributing to the repo?"
+        message: "Please provide information on Questions:",
+        name: "questioning"
     }
 ];
 
-var filename = "Readme.md";
 
-inquirer.prompt(questions).then(function writeToFile(fileName, data) {
 
-    fs.writeFile(filename, JSON.stringify(data, null, '\t'), function(err) {
+function writeToFile(fileName, data) {
 
-        if (err) {
-          return console.log(err);
-        }
+    inquirer.prompt(questions).
+    then(function(data){
+          generateMarkdown;
+       
+         init();
+
+    }); 
     
-        console.log("Success!");
-    
-      });
-
-});
-    
-
-
-
-
-function init() {
 
 }
+writeToFile()
 
-init();
+function init(){
+    inquirer.prompt({
+        message: "Enter your GitHub username",
+        name: "username"
+    })
+    .then(function (answer) {
+        
+        console.log(answer.username);
+        // const queryUrl = "https://api.github.com/users/" + answer.username";
+        // console.log(queryUrL);
+
+        //api.
+        axios
+        .get("https://api.github.com/users/Dorinetk")
+        .then(function (res) {
+
+                console.log(res); 
+
+                fs.appendFile("readmegenerator.md", "## GitHub Avatar" + "\n" + "\n" + "![ " + answer.username + "](" + res.data.avatar_url + ")" + "\n" + "\n", function (err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log("Your generated readme is saved as readmegenarator.md");
+                });
+           
+            fs.appendFile("readmegenerator.md", "## GitHub Email: " + res.data.email + "\n" + "\n", function (err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    
+            });
+        })
+        .catch(function (error) {
+                console.log(error);
+        })
+        .finally(function () {
+                    //always executed
+        });  
+    });
+
+}
