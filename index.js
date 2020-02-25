@@ -100,14 +100,14 @@ function init(){
 
                 //console.log(res); 
 
-                fs.appendFile("readmegenerator.md", "GitHub Avatar" + "\n" + "\n" + "![ " + answer.username + "](" + res.data.avatar_url + "&s=48"+ ")" + "\n" + "\n", function (err) {
+                fs.appendFile("readmegenerator.md", "###GitHub Avatar" + "\n" + "\n" + "![ " + answer.username + "](" + res.data.avatar_url + "&s=48"+ ")" + "\n" + "\n", function (err) {
                     if (err) {
                         return console.log(err);
                     }
                     console.log("Your generated readme is saved as readmegenarator.md");
                 });
            
-            fs.appendFile("readmegenerator.md", "GitHub Email: " + res.data.email + "\n" + "\n", function (err) {
+            fs.appendFile("readmegenerator.md", "###GitHub Email: " + res.data.email + "\n" + "\n", function (err) {
                     if (err) {
                         return console.log(err);
                     }
