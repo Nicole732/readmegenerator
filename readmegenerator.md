@@ -1,34 +1,38 @@
-#ReadmeGenerator
+# Readmegenerator
 
-![badge](https://img.shields.io/badge/license-MIT-blue)
+## Usage
 
-sage
+it is useful for all GitHub updates
 
-Useful for all Github updates
-
-##License
+## License
 
 MIT
 
-##Questions
-
-Contact the developer for all questions
-
-##Table of Content
-
-Introduction, Usage, License, Contributing, Tests, Questions
-
-##Contributions
+## Contributions
 
 It is open source
 
-##Installation
+## Questions
+
+contact the developer
+
+## Table of Content
+
+Introduction, Usage, License, Contributing, Tests, Questions
+
+## Description
+
+This app generates a good readme based on user's input.
+
+![badge](https://img.shields.io/badge/license-MIT-blue)
+
+## Installation
 
 npm i
 
-###GitHub Avatar
+### GitHub Avatar
 
-![ ](https://avatars3.githubusercontent.com/u/58992132?v=4&s=48)
+![RepoOwner](https://avatars3.githubusercontent.com/u/58992132?v=4&s=48)
 
-###GitHub Email: null
+### GitHub Email: null
 

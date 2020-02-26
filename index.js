@@ -1,5 +1,5 @@
 var inquirer = require("inquirer");
-const axios = require("axios").default;
+const axios = require("axios");
 var fs = require("fs"); 
 var  generateMarkdown = require("./utils/generateMarkdown.js");
 const api = require("./utils/api.js");
@@ -72,7 +72,7 @@ function writeToFile(fileName, data) {
 
     inquirer.prompt(questions).
     then(function(data){
-          generateMarkdown(data);
+        generateMarkdown(data);
        
          init();
 
@@ -87,32 +87,35 @@ function init(){
         message: "Enter your GitHub username",
         name: "username"
     })
-    .then(function (answer) {
+    .then(function ({username}) {
         
-        console.log(answer.username);
-        // const queryUrl = "https://api.github.com/users/" + answer.username";
-        // console.log(queryUrL);
-        //const userName = answer.username;
+        //console.log(answer.username);
+
+        const queryUrl = `https://api.github.com/users/${username}`;
+        
+        console.log(queryUrl);
         //api.
-        axios
-        .get("https://api.github.com/users/Dorinetk") //.get("https://api.github.com/users/", {params:{userName}})
-        .then(function (res) {
+       axios
+        .get(queryUrl) 
+        .then(function (res){
+                console.log(res.data);
 
-                //console.log(res); 
+                console.log(res.data.avatar_url); 
 
-                fs.appendFile("readmegenerator.md", "###GitHub Avatar" + "\n" + "\n" + "![ " + answer.username + "](" + res.data.avatar_url + "&s=48"+ ")" + "\n" + "\n", function (err) {
+                fs.appendFile("readmegenerator.md", "### GitHub Avatar" + "\n" + "\n" + "![RepoOwner](" + res.data.avatar_url + "&s=48"+ ")" + "\n" + "\n", function (err) {
                     if (err) {
                         return console.log(err);
                     }
                     console.log("Your generated readme is saved as readmegenarator.md");
                 });
            
-            fs.appendFile("readmegenerator.md", "###GitHub Email: " + res.data.email + "\n" + "\n", function (err) {
+                fs.appendFile("readmegenerator.md", "### GitHub Email: " + res.data.email + "\n" + "\n", function (err) {
                     if (err) {
                         return console.log(err);
                     }
                     
-            });
+                });
+            
         })
         .catch(function (error) {
                 console.log(error);
