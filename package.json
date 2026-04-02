@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
-    "inquirer": "^6.5.2"
+    "inquirer": "^13.3.2"
   },
   "description": ""
 }
